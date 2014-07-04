@@ -43,6 +43,7 @@ describe '#update_quality' do
 
       context 'given Blue First' do
         let(:name) { 'Blue First' }
+        let(:award) { BlueFirst.new(name, initial_expires_in, initial_quality) }
 
         before do
           # Verify that this is always true in the current context
@@ -87,6 +88,7 @@ describe '#update_quality' do
       context 'given Blue Distinction Plus' do
         let(:initial_quality) { 80 }
         let(:name) { 'Blue Distinction Plus' }
+        let(:award) { BlueDistinctionPlus.new(name, initial_expires_in, initial_quality) }
 
         before do
           # Verify that this is always true in the current context
@@ -110,6 +112,7 @@ describe '#update_quality' do
 
       context 'given Blue Compare' do
         let(:name) { 'Blue Compare' }
+        let(:award) { BlueCompare.new(name, initial_expires_in, initial_quality) }
 
         before do
           # Verify that this is always true in the current context
@@ -177,8 +180,10 @@ describe '#update_quality' do
       end
 
       context 'given a Blue Star award' do
-        before { pending }
+        # before { pending }
         let(:name) { 'Blue Star' }
+        let(:award) { BlueStar.new(name, initial_expires_in, initial_quality) }
+
         before { award.expires_in.should == initial_expires_in-1 }
 
         context 'before the expiration date' do
@@ -218,7 +223,7 @@ describe '#update_quality' do
     let(:awards) {
       [
         Award.new('NORMAL ITEM', 5, 10),
-        Award.new('Blue First', 3, 10),
+        BlueFirst.new('Blue First', 3, 10),
       ]
     }
 
